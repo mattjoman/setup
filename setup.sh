@@ -22,7 +22,7 @@ sudo pacman -S firefox firefox-developer-edition
 sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer
 
 # latex
-sudo pacman -S texlive-most
+sudo pacman -S texlive-most pandoc
 
 # devops tools
 sudo pacman -S docker docker-compose
