@@ -9,7 +9,6 @@ echo "Install packages from official repos (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
   sudo pacman -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom                # xorg stuff
-  sudo pacman -S xmonad xmonad-contrib xmobar                                                                  # xmonad
   sudo pacman -S qtile                                                                                         # qtile
   sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
   sudo pacman -S firefox firefox-developer-edition                                                             # browser
@@ -25,11 +24,6 @@ fi
 
 
 
-
-
-
-# clone my dotfiles repo
-#git clone https://github.com/mattjoman/dotfiles.git ~
 
 
 
@@ -69,15 +63,6 @@ fi
 
 
 
-
-#cp -r /home/$USER/dotfiles/config /home/$USER/.config/
-#cp -r /home/$USER/dotfiles/local /home/$USER/.local/
-#cp /home/$USER/dotfiles/xinitrc /home/$USER/.xinitrc
-#cp /home/$USER/dotfiles/bashrc /home/$USER/.bashrc
-
-
-
-# clone slock repo
 echo "Clone slock source to ~/.config/slock (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
@@ -124,7 +109,6 @@ fi
 echo "Set up packer for nvim (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
-  # set up packer for neovim
   git clone --depth 1 https://github.com/wbthomason/packer.nvim\
    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi

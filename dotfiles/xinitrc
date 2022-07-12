@@ -56,6 +56,4 @@ xwallpaper --zoom $HOME/.local/wallpapers/0240.jpg
 # Compositor
 picom --experimental-backends &
 
-#exec i3
-#exec $HOME/.config/xmonad/xmonad-x86_64-linux
 qtile start
