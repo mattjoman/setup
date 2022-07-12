@@ -1,0 +1,68 @@
+# My colourscheme
+
+
+colors:
+  # Default colors
+  primary:
+    background: '#000000'   #
+    #foreground: '#cec8af'   #
+    foreground: '#bbbbbb'   #
+    dim_foreground: '#828282'    #
+    bright_foreground: '#bbbbbb' # square_brackets_htop
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '#000000'
+      background: '#ffffff'
+    focused_match:
+      foreground: '#ffffff'
+      background: '#000000'
+    bar:
+      background: '#c5c8c6'
+      foreground: '#1d1f21'
+  hints:
+    start:
+      foreground: '#1d1f21'
+      background: '#e9ff5e'
+    end:
+      foreground: '#e9ff5e'
+      background: '#1d1f21'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellBackground
+    background: CellForeground
+  normal:              #
+    black:   '#002b36' #  negative contrasts
+    red:     '#dc322f' #  git status, htop cpu levels, SUID files
+    green:   '#859900' #  some things in htop, git status, sticky bit file highlight   
+    yellow:  '#b58900' #  pipe files, GUID files
+    blue:    '#268bd2' #  I/O tab in htop
+    magenta: '#6c71c4' #  htop mem bar
+    cyan:    '#2aa198' #  movable bar in htop
+    white:   '#93a1a1' #  
+  bright:              # 
+    black:   '#586e75' #  htop %cpu state nice mem use
+    red:     '#bb6b16' #  some things in htop                               
+    green:   '#85dd00' #  executables
+    yellow:  '#c5a900' #  device files
+    blue:    '#368bd2' #  dirs
+    magenta: '#d33682' #  socket files
+    cyan:    '#3ac1b8' #  htop uptime tasks, sym links
+    white:   '#93a1a1' #
+  dim:                 #
+    black:   '#151515' #
+    red:     '#884444' #
+    green:   '#777c44' #
+    yellow:  '#9e824c' #
+    blue:    '#556a7d' #
+    magenta: '#75617b' #
+    cyan:    '#5b7d78' #
+    white:   '#828482' #
+  transparent_background_colors: true

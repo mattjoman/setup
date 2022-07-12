@@ -3,91 +3,157 @@
 ## This script installs and configures the packages needed for my setup.
 ## It does not install a bootloader.
 
-# xorg stuff
-sudo pacman -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom
 
-# xmonad
-sudo pacman -S xmonad xmonad-contrib xmobar
 
-# qtile
-sudo pacman -S qtile
+echo "Install packages from official repos (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  sudo pacman -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom                # xorg stuff
+  sudo pacman -S xmonad xmonad-contrib xmobar                                                                  # xmonad
+  sudo pacman -S qtile                                                                                         # qtile
+  sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
+  sudo pacman -S firefox firefox-developer-edition                                                             # browser
+  sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer                                  # sound
+  sudo pacman -S texlive-most pandoc                                                                           # latex
+  sudo pacman -S docker docker-compose                                                                         # devops tools
+  sudo pacman -S openssh htop lsof tmux gparted                                                                # useful admin tools
+  sudo pacman -S net-tools iproute2 nmap                                                                       # useful network tools
+  sudo pacman -S gcc gdb base-devel linux-headers                                                              # kernel/low-level development
+  sudo pacman -S lm_sensors psensor xsensors                                                                   # lm_sensors
+fi
 
-# useful
-sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups
 
-# browser
-sudo pacman -S firefox firefox-developer-edition
 
-# sound
-sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer
 
-# latex
-sudo pacman -S texlive-most pandoc
 
-# devops tools
-sudo pacman -S docker docker-compose
 
-# useful admin tools
-sudo pacman -S openssh htop lsof tmux gparted
 
-# useful network tools
-sudo pacman -S net-tools iproute2 nmap
+# clone my dotfiles repo
+#git clone https://github.com/mattjoman/dotfiles.git ~
 
-# kernel/low-level development
-sudo pacman -S gcc gdb base-devel linux-headers
 
-# lm_sensors
-sudo pacman -S lm_sensors psensor xsensors
+
+
+echo "Copy directories to ~/.config (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  mkdir -p $HOME/.config
+  for d in dotfiles/*/; do
+    cp -r $d $HOME/.config
+  done
+fi
+
+
+
+
+echo "Copy directories to ~/.local (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+mkdir -p $HOME/.local
+  for d in dotfiles/*/; do
+    cp -r $d $HOME/.local
+  done
+fi
+
+
+
+echo "Copy .bashrc and .xinitrc to ~ (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  for d in dotfiles/*/; do
+    cp $HOME/dotfiles/xinitrc $HOME.xinitrc
+    cp $HOME/dotfiles/bashrc $HOME.bashrc
+  done
+fi
+
+
+
+
+
+#cp -r /home/$USER/dotfiles/config /home/$USER/.config/
+#cp -r /home/$USER/dotfiles/local /home/$USER/.local/
+#cp /home/$USER/dotfiles/xinitrc /home/$USER/.xinitrc
+#cp /home/$USER/dotfiles/bashrc /home/$USER/.bashrc
+
+
+
+# clone slock repo
+echo "Clone slock source to ~/.config/slock (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  mkdir $HOME/slock
+  git clone https://git.suckless.org/slock $HOME/.config/slock/
+fi
+
+
+
+
+
+
+
+
+
 
 
 
 cd ~
 
 
-# install yay
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si
-cd ..
+
+
+echo "Install Yay (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin
+  makepkg -si
+  cd ..
+  rm -rf yay-bin
+fi
 
 
 
 
-# clone my dotfiles repo
-git clone https://github.com/mattjoman/dotfiles.git ~
-
-mkdir -p /home/$USER/.config
-cp -r /home/$USER/dotfiles/config /home/$USER/.config/
-cp -r /home/$USER/dotfiles/local /home/$USER/.local/
-cp /home/$USER/dotfiles/xinitrc /home/$USER/.xinitrc
-cp /home/$USER/dotfiles/bashrc /home/$USER/.bashrc
-
-
-
-# clone slock repo
-mkdir /home/$USER/slock
-git clone https://git.suckless.org/slock /home/$USER/.config/slock/
-
-
-
-# create symlinks to the xmonad directory and xmobarrc file
-cd /home/$USER/
-ln -s .config/xmonad .xmonad
-ln -s .config/xmonad/xmobarrc .xmobarrc
 
 
 
 
-# set up packer for neovim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Set v-console and X11 keymaps
-sudo echo "KEYMAP=uk" >> /etc/vconsole.conf
-sudo localectl set-x11-keymap gb
 
-# Set up lm_sensors
-sudo sensors-detect
+
+echo "Set up packer for nvim (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  # set up packer for neovim
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+fi
+
+
+
+
+
+echo "Set keymap (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  # Set v-console and X11 keymaps
+  sudo echo "KEYMAP=uk" >> /etc/vconsole.conf
+  sudo localectl set-x11-keymap gb
+fi
+
+
+
+
+
+echo "Set up lm-sensors (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  sudo sensors-detect
+fi
+
+
+
+
 
 clear
 echo ""

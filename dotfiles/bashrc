@@ -1,0 +1,18 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias vim='nvim'
+alias z='zathura'
+alias dump='objdump -M intel -d'
+
+PS1='[\u@\h \W]\$ '
+
+set -o vi
+xset r rate 250 50
+
+export XDG_CONFIG_HOME=$HOME/.config # xmonad uses this
