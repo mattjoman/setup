@@ -38,7 +38,7 @@ echo "Copy directories to ~/.config (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
   mkdir -p $HOME/.config
-  for d in dotfiles/*/; do
+  for d in dotfiles/config/*/; do
     cp -r $d $HOME/.config
   done
 fi
@@ -50,7 +50,7 @@ echo "Copy directories to ~/.local (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
 mkdir -p $HOME/.local
-  for d in dotfiles/*/; do
+  for d in dotfiles/local/*/; do
     cp -r $d $HOME/.local
   done
 fi
@@ -61,8 +61,8 @@ echo "Copy .bashrc and .xinitrc to ~ (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
   for d in dotfiles/*/; do
-    cp $HOME/dotfiles/xinitrc $HOME.xinitrc
-    cp $HOME/dotfiles/bashrc $HOME.bashrc
+    cp dotfiles/xinitrc $HOME/.xinitrc
+    cp dotfiles/bashrc $HOME/.bashrc
   done
 fi
 
