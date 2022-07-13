@@ -20,6 +20,9 @@ if [ "$input" = 'y' ]; then
   sudo pacman -S gcc gdb base-devel linux-headers                                                              # kernel/low-level development
   sudo pacman -S lm_sensors psensor xsensors                                                                   # lm_sensors
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -36,6 +39,9 @@ if [ "$input" = 'y' ]; then
     cp -r $d $HOME/.config
   done
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -48,6 +54,9 @@ mkdir -p $HOME/.local
     cp -r $d $HOME/.local
   done
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -59,6 +68,9 @@ if [ "$input" = 'y' ]; then
     cp dotfiles/bashrc $HOME/.bashrc
   done
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -69,6 +81,9 @@ if [ "$input" = 'y' ]; then
   mkdir $HOME/slock
   git clone https://git.suckless.org/slock $HOME/.config/slock/
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -95,6 +110,9 @@ if [ "$input" = 'y' ]; then
   cd ..
   rm -rf yay-bin
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -112,6 +130,9 @@ if [ "$input" = 'y' ]; then
   git clone --depth 1 https://github.com/wbthomason/packer.nvim\
    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
+echo ""
+echo ""
+echo ""
 
 
 
@@ -124,6 +145,9 @@ if [ "$input" = 'y' ]; then
   sudo echo "KEYMAP=uk" >> /etc/vconsole.conf
   sudo localectl set-x11-keymap gb
 fi
+echo ""
+echo ""
+echo ""
 
 
 
