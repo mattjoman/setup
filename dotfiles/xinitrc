@@ -51,7 +51,7 @@ fi
 
 
 # Wallpaper
-xwallpaper --zoom $HOME/.local/wallpapers/0240.jpg
+xwallpaper --zoom $HOME/.local/wallpapers/model_city.jpg
 
 # Compositor
 picom --experimental-backends &
