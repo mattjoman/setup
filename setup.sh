@@ -11,6 +11,7 @@ if [ "$input" = 'y' ]; then
   sudo pacman -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom                # xorg stuff
   sudo pacman -S qtile                                                                                         # qtile
   sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
+  sudo pacman -S thunar ranger                                                                                 # useful
   sudo pacman -S firefox firefox-developer-edition                                                             # browser
   sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer                                  # sound
   sudo pacman -S texlive-most pandoc                                                                           # latex
