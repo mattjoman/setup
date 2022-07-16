@@ -14,8 +14,8 @@ import:
   #- ~/.config/alacritty/colourschemes/gruvbox_dark.yml
   #- ~/.config/alacritty/colourschemes/afterglow.yml
   #- ~/.config/alacritty/colourschemes/nord.yml
-  #- ~/.config/alacritty/colourschemes/myscheme1.yml
-  - ~/.config/alacritty/colourschemes/myscheme2.yml
+  - ~/.config/alacritty/colourschemes/myscheme1.yml
+  #- ~/.config/alacritty/colourschemes/myscheme2.yml
   #- ~/.config/alacritty/colourschemes/dracula.yml
   #- ~/.config/alacritty/colourschemes/blackula.yml
   #- ~/.config/alacritty/colourschemes/oceanic_next.yml
