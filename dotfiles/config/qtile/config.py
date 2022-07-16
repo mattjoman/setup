@@ -6,6 +6,7 @@ from libqtile.utils import guess_terminal
 mod      = "mod1"
 terminal = "alacritty"
 browser  = "brave"
+fileManager = "thunar"
 sound    = "pavucontrol"
 launcher = "dmenu_run -l 10 -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000' -fn 'some font'"
 lock     = "slock"
@@ -117,6 +118,7 @@ keys = [
     Key([], "XF86AudioLowerVolume",  lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")),
     Key([], "XF86AudioRaiseVolume",  lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")),
 
+
     ## Switch focus ##
     Key([mod], "h",                  lazy.layout.left()),
     Key([mod], "l",                  lazy.layout.right()),
@@ -125,6 +127,7 @@ keys = [
     Key([mod], "space",              lazy.layout.left()),
     Key([mod], "q",                  lazy.window.kill()),
 
+
     ## Move windows ##
     Key([mod, "shift"], "h",         lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l",         lazy.layout.shuffle_right()),
@@ -132,31 +135,52 @@ keys = [
     Key([mod, "shift"], "k",         lazy.layout.shuffle_up()),
     Key([mod, "shift"], "space",     lazy.layout.shuffle_left()),
 
+
     ## Change window sizes ##
-    Key([mod, "control"], "h",       lazy.layout.left(), lazy.layout.shrink()),
-    Key([mod, "control"], "l",       lazy.layout.left(), lazy.layout.grow()),
-    Key([mod, "control"], "j",       lazy.layout.grow_down()),
-    Key([mod, "control"], "k",       lazy.layout.grow_up()),
+    # MonadTall
+    Key([mod, "control"], "h",       lazy.layout.shrink()),
+    Key([mod, "control"], "l",       lazy.layout.grow()),
     Key([mod, "control"], "n",       lazy.layout.normalize()),
     Key([mod, "control"], "m",       lazy.layout.maximize()),
+    # Columns
+    Key([mod, "control"], "j",       lazy.layout.grow_down()),
+    Key([mod, "control"], "k",       lazy.layout.grow_up()),
+    # All
+    Key([mod, "control"], "f",       lazy.window.toggle_fullscreen()),
+
 
     ## Stuff ##
     Key([mod, "shift"],   "Return",  lazy.layout.toggle_split()),
-    Key([mod],            "f",       lazy.window.toggle_fullscreen()),
     Key([mod],            "Tab",     lazy.next_layout()), # toggle between layouts
     Key([mod, "control"], "r",       lazy.reload_config()),
     Key([mod, "control"], "q",       lazy.shutdown()),
     Key([mod],            "r",       lazy.spawncmd()),
 
-    ## Launch programs ##
+
+    ## Essential Programs ##
+    Key([mod], "b",                  lazy.spawn(browser)),
+    Key([mod], "p",                  lazy.spawn(launcher)),
+    Key([mod], "s",                  lazy.spawn(sound)),
+    Key([mod], "f",                  lazy.spawn(fileManager)),
+    Key([mod], "BackSpace",          lazy.spawn(lock)),
     Key([mod], "Return",             lazy.spawn(terminal)),
-    KeyChord([mod], "e", [
-            Key([], "b",                  lazy.spawn(browser)),
-            Key([], "p",                  lazy.spawn(launcher)),
-            Key([], "s",                  lazy.spawn(sound)),
-            Key([], "l",                  lazy.spawn(lock))
+
+
+    ## Groups ##
+    KeyChord([mod, "control"], "g", [
+        Key([], "l",         lazy.screen.next_group()),
+        Key([], "h",         lazy.screen.prev_group())
         ],
-        mode = "Execute"
+        mode = "Group"
+    ),
+
+
+    ## Screenshots ##
+    KeyChord([mod, "control"], "s", [
+        Key([], "Return",    lazy.spawn("my_screenshot.sh")),
+        Key([], "g",         lazy.spawn("flameshot gui"))
+        ],
+        mode = "Screenshot"
     )
 ]
 
