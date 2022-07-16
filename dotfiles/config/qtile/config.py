@@ -5,7 +5,7 @@ from libqtile.utils import guess_terminal
 
 mod      = "mod1"
 terminal = "alacritty"
-browser  = "firefox"
+browser  = "brave"
 fileManager = "thunar"
 sound    = "pavucontrol"
 launcher = "dmenu_run -l 10 -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000' -fn 'some font'"

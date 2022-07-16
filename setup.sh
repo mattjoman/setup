@@ -12,7 +12,7 @@ if [ "$input" = 'y' ]; then
   sudo pacman -S qtile                                                                                         # qtile
   sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
   sudo pacman -S thunar ranger flameshot                                                                       # useful
-  sudo pacman -S firefox firefox-developer-edition                                                             # browser
+  sudo pacman -S firefox-developer-edition                                                                     # browser
   sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer                                  # sound
   sudo pacman -S texlive-most pandoc                                                                           # latex
   sudo pacman -S docker docker-compose                                                                         # devops tools
@@ -125,6 +125,14 @@ echo ""
 echo ""
 
 
+echo "Install packages from community repos with yay (y/n)?"
+read input
+if [ "$input" = 'y' ]; then
+  yay -S brave-bin
+fi
+echo ""
+echo ""
+echo ""
 
 
 
