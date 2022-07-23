@@ -6,6 +6,9 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -a --color=auto'
+alias lal='ls -al --color=auto'
 alias vim='nvim'
 alias z='zathura'
 alias dump='objdump -M intel -d'
