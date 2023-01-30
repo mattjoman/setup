@@ -10,6 +10,7 @@ fileManager = "thunar"
 sound    = "pavucontrol"
 launcher = "dmenu_run -l 10 -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000' -fn 'some font'"
 lock     = "slock"
+mediaPlayer = "vlc"
 
 colours = {
     "turquoise1": "#00ffff",
@@ -161,6 +162,7 @@ keys = [
     Key([mod], "b",                  lazy.spawn(browser)),
     Key([mod], "p",                  lazy.spawn(launcher)),
     Key([mod], "s",                  lazy.spawn(sound)),
+    Key([mod], "m",                  lazy.spawn(mediaPlayer)),
     Key([mod], "f",                  lazy.spawn(fileManager)),
     Key([mod], "BackSpace",          lazy.spawn(lock)),
     Key([mod], "Return",             lazy.spawn(terminal)),
