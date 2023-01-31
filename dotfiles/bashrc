@@ -12,6 +12,8 @@ alias lal='ls -al --color=auto'
 alias vim='nvim'
 alias z='zathura'
 alias dump='objdump -M intel -d'
+alias dl-playlist='yt-dlp -i -o "%(playlist_index)s-%(title)s.%(ext)s" --restrict-filenames'
+alias dl-video='yt-dlp -o "%(title)s.%(ext)s" --restrict-filenames'
 
 PS1='[\u@\h \W]\$ '
 
