@@ -14,7 +14,7 @@ alias z='zathura'
 alias dump='objdump -M intel -d'
 alias dl-playlist='yt-dlp -i -o "%(playlist_index)s-%(title)s.%(ext)s" --restrict-filenames'
 alias dl-video='yt-dlp -o "%(title)s.%(ext)s" --restrict-filenames'
-alias sync='rsync -azP --delete'
+alias rs='rsync -azP --delete'
 
 PS1='[\u@\h \W]\$ '
 
