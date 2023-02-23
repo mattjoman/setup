@@ -19,7 +19,7 @@ if [ "$input" = 'y' ]; then
   sudo pacman --noconfirm -S docker docker-compose                                                                         # devops tools
   sudo pacman --noconfirm -S openssh htop lsof tmux gparted                                                                # useful admin tools
   sudo pacman --noconfirm -S net-tools iproute2 nmap                                                                       # useful network tools
-  sudo pacman --noconfirm -S gcc gdb base-devel linux-headers extra/strace extra/ltrace                                                # kernel/low-level development
+  sudo pacman --noconfirm -S gcc gdb base-devel linux-headers extra/strace extra/ltrace                                    # kernel/low-level development
   sudo pacman --noconfirm -S lm_sensors psensor xsensors                                                                   # lm_sensors
 fi
 echo ""
