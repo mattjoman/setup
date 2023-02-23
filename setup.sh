@@ -8,19 +8,19 @@
 echo "Install packages from official repos (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
-  sudo pacman -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom                # xorg stuff
-  sudo pacman -S qtile                                                                                         # qtile
-  sudo pacman -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
-  sudo pacman -S vlc yt-dlp                                                                                    # media
-  sudo pacman -S thunar ranger flameshot                                                                       # useful
-  sudo pacman -S firefox-developer-edition                                                                     # browser
-  sudo pacman -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer                                  # sound
-  sudo pacman -S texlive-most pandoc                                                                           # latex
-  sudo pacman -S docker docker-compose                                                                         # devops tools
-  sudo pacman -S openssh htop lsof tmux gparted                                                                # useful admin tools
-  sudo pacman -S net-tools iproute2 nmap                                                                       # useful network tools
-  sudo pacman -S gcc gdb base-devel linux-headers                                                              # kernel/low-level development
-  sudo pacman -S lm_sensors psensor xsensors                                                                   # lm_sensors
+  sudo pacman --noconfirm -S xorg xorg-xinit xorg-backlight xf86-video-intel xorg-xfontsel xwallpaper picom                # xorg stuff
+  sudo pacman --noconfirm -S qtile                                                                                         # qtile
+  sudo pacman --noconfirm -S zathura zathura-pdf-poppler dmenu neovim alacritty python python-pip sxiv thunderbird cups    # useful
+  sudo pacman --noconfirm -S vlc yt-dlp                                                                                    # media
+  sudo pacman --noconfirm -S thunar ranger flameshot                                                                       # useful
+  sudo pacman --noconfirm -S firefox-developer-edition                                                                     # browser
+  sudo pacman --noconfirm -S alsa-utils pulseaudio pulseaudio-alsa pavucontrol pulsemixer                                  # sound
+  sudo pacman --noconfirm -S texlive-most pandoc                                                                           # latex
+  sudo pacman --noconfirm -S docker docker-compose                                                                         # devops tools
+  sudo pacman --noconfirm -S openssh htop lsof tmux gparted                                                                # useful admin tools
+  sudo pacman --noconfirm -S net-tools iproute2 nmap                                                                       # useful network tools
+  sudo pacman --noconfirm -S gcc gdb base-devel linux-headers strace ltrace                                                # kernel/low-level development
+  sudo pacman --noconfirm -S lm_sensors psensor xsensors                                                                   # lm_sensors
 fi
 echo ""
 echo ""
@@ -45,10 +45,7 @@ echo ""
 echo "Copy directories to ~/.config (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
-  mkdir -p $HOME/.config
-  for d in dotfiles/config/*/; do
-    cp -r $d $HOME/.config
-  done
+  rsync -azP -q dotfiles/config/ $HOME/.config/
 fi
 echo ""
 echo ""
@@ -60,10 +57,7 @@ echo ""
 echo "Copy directories to ~/.local (y/n)?"
 read input
 if [ "$input" = 'y' ]; then
-mkdir -p $HOME/.local
-  for d in dotfiles/local/*/; do
-    cp -r $d $HOME/.local
-  done
+  rsync -azP -q dotfiles/local/ $HOME/.local/
 fi
 echo ""
 echo ""
