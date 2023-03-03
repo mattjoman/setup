@@ -17,6 +17,7 @@ alias dl-video='yt-dlp -o "%(title)s.%(ext)s" --restrict-filenames'
 alias dl-audio-playlist='yt-dlp -x -o "%(playlist_index)s-%(title)s.%(ext)s" --restrict-filenames'
 alias dl-audio='yt-dlp -x -o "%(title)s.%(ext)s" --restrict-filenames'
 alias rs='rsync -azP --delete'
+alias vbm='vboxmanage'
 
 PS1='[\u@\h \W]\$ '
 
