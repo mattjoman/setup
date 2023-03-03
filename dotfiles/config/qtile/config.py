@@ -250,7 +250,7 @@ screens = [
                 ),
                 widget.Spacer(),
                 widget.Systray(fontsize=barFontSize),
-                widget.Battery(fontsize=15, foreground='888888'),
+                #widget.Battery(fontsize=15, foreground='888888'),
                 widget.TextBox(text=" | ", fontsize=20),
                 widget.Clock(format="%d-%m-%Y  (%a)  %H:%M:%S", fontsize=barFontSize, foreground='888888'),
             ],
