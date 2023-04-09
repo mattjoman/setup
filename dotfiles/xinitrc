@@ -56,4 +56,5 @@ xwallpaper --zoom $HOME/.local/wallpapers/kali-ascii-16x9.png
 # Compositor
 picom --experimental-backends &
 
+#dual_monitor.sh
 qtile start
