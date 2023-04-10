@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## This scripts should be run instead of startx
+
+if [ "$1" = "2" ]; then
+  echo $1 > ~/.local/n_monitors
+else
+  echo "1" > ~/.local/n_monitors
+fi
+
+startx
