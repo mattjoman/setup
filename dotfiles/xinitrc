@@ -56,7 +56,7 @@ xwallpaper --zoom $HOME/.local/wallpapers/kali-ascii-16x9.png
 # Compositor
 picom --experimental-backends &
 
-if [ "$(cat .local/n_monitors)" = "2" ]; then
+if [ "$(cat ~/.n_monitors)" = "2" ]; then
     dual_monitor.sh
     qtile start -c ~/.config/qtile/dual_monitor.py
 else
