@@ -1,0 +1,6 @@
+#!/bin/bash
+
+path="/mnt/1/my-files/my-details"
+
+clear
+gpg -d "$path/details.yml.gpg" | less
