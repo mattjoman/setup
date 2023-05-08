@@ -1,0 +1,29 @@
+#!/bin/python3
+
+import sys
+import yaml
+
+
+record = {}
+
+# Enter fields
+record_title = input("Enter record title: ")
+record[record_title] = {}
+
+record_info = input("Enter description: ")
+record[record_title]["Info"] = record_info
+
+while True:
+    field = input("Enter field name (q when done): ")
+    if field == "q":
+        break
+
+    value = input("Enter field value: ")
+    record[record_title][field] = value
+
+record = yaml.dump(record)
+
+with open("out", "w") as f:
+    f.write(record)
+
+print(record)
