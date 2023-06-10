@@ -3,4 +3,5 @@
 path="/mnt/1/my-files/my-details"
 
 clear
-gpg --pinentry-mode=loopback -d "$path/details.yml.gpg" | less
+#gpg --pinentry-mode=loopback -d "$path/details.yml.gpg" | less
+gpg --pinentry-mode=loopback -d "$path/details.yml.gpg"
