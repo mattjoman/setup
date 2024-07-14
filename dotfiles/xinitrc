@@ -56,10 +56,10 @@ xwallpaper --zoom $HOME/.local/wallpapers/kali-ascii-16x9.png
 # Compositor
 picom --experimental-backends &
 
-if [ "$(cat ~/.n_monitors)" = "2" ]; then
-    dual_monitor.sh
-    qtile start -c ~/.config/qtile/dual_monitor.py
-else
-    qtile start -c ~/.config/qtile/single_monitor.py
-fi
+# Set up dual monitors
+xrandr --output HDMI1 --auto
+xrandr --output eDP1 --auto --output HDMI1 --left-of eDP1
+
+# Start qtile
+qtile start -c ~/.config/qtile/config.py
 

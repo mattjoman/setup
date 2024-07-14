@@ -1,7 +1,10 @@
-from libqtile import bar, layout, widget, qtile
+from libqtile import bar, layout, widget, qtile, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.command import client
+
+
 
 mod      = "mod1"
 terminal = "alacritty"
@@ -68,35 +71,56 @@ myColumns = layout.Columns(
 
 groups = [
     Group(
-        name="1 (main)",
+        name="scnd1",
         layouts=[
             myMonadTall,
             myMax,
         ]
     ),
     Group(
-        name="2 (web)",
+        name="scnd2",
         layouts=[
             myColumns,
             myMax
         ]
     ),
     Group(
-        name="3 (dev)",
+        name="scnd3",
         layouts=[
             myMonadTall,
             myMax
         ]
     ),
     Group(
-        name="4 (dev)",
+        name="scnd4",
         layouts=[
             myMonadTall,
             myMax
         ]
     ),
     Group(
-        name="5 (spare)",
+        name="prim1",
+        layouts=[
+            myMonadTall,
+            myMax
+        ]
+    ),
+    Group(
+        name="prim2",
+        layouts=[
+            myMonadTall,
+            myMax
+        ]
+    ),
+    Group(
+        name="prim3",
+        layouts=[
+            myMonadTall,
+            myMax
+        ]
+    ),
+    Group(
+        name="prim4",
         layouts=[
             myMonadTall,
             myMax
@@ -127,6 +151,9 @@ keys = [
     Key([mod], "k",                  lazy.layout.up()),
     Key([mod], "space",              lazy.layout.left()),
     Key([mod], "q",                  lazy.window.kill()),
+
+    Key([mod, "control"], "1",       lazy.to_screen(1)),
+    Key([mod, "control"], "2",       lazy.to_screen(0)),
 
 
     ## Move windows ##
@@ -190,6 +217,7 @@ keys = [
 for i, g in enumerate(groups):
     keys.extend(
         [
+            #Key([mod], str(i + 1),          focusGroup(qtile, i)),
             Key([mod], str(i + 1),          lazy.group[g.name].toscreen()),
             Key([mod, "shift"], str(i + 1), lazy.window.togroup(g.name, switch_group=False)),
         ]
@@ -250,7 +278,36 @@ screens = [
                 ),
                 widget.Spacer(),
                 widget.Systray(fontsize=barFontSize),
-                #widget.Battery(fontsize=15, foreground='888888'),
+                widget.Battery(fontsize=15, foreground='888888'),
+                widget.TextBox(text=" | ", fontsize=20),
+                widget.Clock(format="%d-%m-%Y  (%a)  %H:%M:%S", fontsize=barFontSize, foreground='888888'),
+            ],
+            size=28,
+            opacity=1.0
+            #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    fontsize=barFontSize,
+                    highlight_method='text',
+                    active='888888',
+                    inactive='222222',
+                    this_current_screen_border='00ffff'
+                ),
+                widget.TextBox(text="| ", fontsize=20),
+                widget.CurrentLayout(fontsize=barFontSize, foreground='007705'),
+                widget.TextBox(text="| ", fontsize=20),
+                widget.Chord(
+                    chords_colors={"launch": ("#ff0000", "#ffffff")},
+                    name_transform=lambda name: name.upper(),
+                    fontsize=15
+                ),
+                widget.Spacer(),
+                widget.Battery(fontsize=15, foreground='888888'),
                 widget.TextBox(text=" | ", fontsize=20),
                 widget.Clock(format="%d-%m-%Y  (%a)  %H:%M:%S", fontsize=barFontSize, foreground='888888'),
             ],
@@ -313,3 +370,39 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+
+
+
+
+
+
+
+@hook.subscribe.focus_change
+def allowOrDisallowFocusChange():
+    screenIdx = qtile.screens.index(qtile.current_screen)
+    groupIdx = qtile.groups.index(qtile.current_group)
+
+    if screenIdx == 1 and groupIdx > 3:
+        ## keep secondary screen to the left of the group list
+        qtile.groups_map["scnd4"].cmd_toscreen(1, toggle=False)
+    elif screenIdx == 0 and groupIdx < 4:
+        ## keep primary screen to the right of the group list
+        #gName = groups[4 + groupIdx].name
+        #qtile.groups_map[gName].cmd_toscreen(0, toggle=False)
+        qtile.groups_map["prim1"].cmd_toscreen(0, toggle=False)
+
+    return
+
+
+
+
+@hook.subscribe.startup
+def setDefaultGroup():
+    if len(qtile.screens) > 1:
+        qtile.groups_map["scnd1"].cmd_toscreen(1, toggle=False)
+        qtile.groups_map["prim1"].cmd_toscreen(0, toggle=False)
+
+    return
+
+
